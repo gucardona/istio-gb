@@ -1,0 +1,15 @@
+<section id="injecao" class="warm">
+<div class="head">
+<p class="eyebrow">COMO O ISTIO ENTRA NO POD · SAÍDA REAL DO KUBECTL</p>
+<h2>Um label no namespace, e a aplicação não percebe</h2>
+</div>
+<div class="cards4">
+<div class="card cc in" style="--i:0"><p class="tag">1 · injeção</p><p class="txt">O webhook do istiod adiciona o sidecar: o pod passa de 1/1 para 2/2.</p><p class="code">istio-injection</p></div>
+<div class="card cc in" style="--i:1"><p class="tag">2 · redirecionamento</p><p class="txt">O istio-init cria regras iptables: todo tráfego passa pelo Envoy.</p><p class="code">-p 15001 -z 15006</p></div>
+<div class="card cc in" style="--i:2"><p class="tag">3 · configuração</p><p class="txt">O istiod envia rotas e endpoints a cada Envoy por xDS.</p><p class="code">CDS LDS EDS RDS: SYNCED</p></div>
+<div class="card cc in" style="--i:3"><p class="tag">4 · identidade</p><p class="txt">Cada workload recebe um certificado de 24 h, renovado sozinho.</p><p class="code">spiffe://…/sa/frontend</p></div>
+</div>
+<div class="spacer"></div>
+<p class="lead" style="width:1500px">A aplicação continua falando HTTP simples. O sidecar cifra, aplica as regras e mede tudo.</p>
+<aside>Isto vem do script demo/istio-demo.sh, que roda só comandos de leitura no cluster. Se der tempo, mostrar ao vivo: kubectl get pods nos dois namespaces, os args do istio-init, istioctl proxy-status e istioctl proxy-config secret.</aside>
+</section>

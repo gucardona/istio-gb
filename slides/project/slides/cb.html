@@ -1,0 +1,14 @@
+<section id="cb" class="warm">
+<div class="head">
+<p class="eyebrow">GRÁFICOS E RESULTADOS: VAZÃO COM 20 CONEXÕES</p>
+<h2>A vazão do Istio depende muito da telemetria ligada</h2>
+</div>
+<div class="nums">
+<div class="num na in" style="--i:0"><p class="big" style="font-size:112px">3.800</p><p class="lbl">pedidos/s no caso A</p></div>
+<div class="num nb in" style="--i:1"><p class="big" style="font-size:112px">3.450</p><p class="lbl">pedidos/s no caso B</p></div>
+<div class="num nc in" style="--i:2"><p class="big" style="font-size:112px">340</p><p class="lbl">caso C com rastreamento em 100% e log de cada pedido</p></div>
+<div class="num nc in" style="--i:3"><p class="big" style="font-size:112px">600</p><p class="lbl">caso C com rastreamento em 1% e sem log</p></div>
+</div>
+<p class="body" style="width:1650px">Não é um teto do Istio. A CPU da máquina ficou abaixo de 60%. Com 20 conexões que esperam cada resposta, a vazão é o número de conexões dividido pelo tempo de resposta; quando a telemetria cai para o padrão, o tempo cai de 56 para 31 ms e a vazão sobe cerca de 75%.</p>
+<aside>Neste teste, 20 conexões fazem pedidos o mais rápido possível. Cada conexão só manda o próximo pedido quando recebe a resposta, então a vazão é, na prática, 20 dividido pelo tempo de resposta. A e B passaram de 3.400 pedidos por segundo. No Istio, no comparativo original deu cerca de 560. Como isso parecia baixo demais, repetimos o teste do caso C de duas formas, três rodadas de 20 segundos cada. Com a telemetria que usamos para as evidências, rastreamento em 100% dos pedidos e log de acesso de cada pedido, deu cerca de 340 pedidos por segundo, com mediana de 56 ms. Com o rastreamento no padrão do Istio, 1%, e sem o log, subiu para cerca de 600, com mediana de 31 ms. E a CPU da máquina dos serviços ficou abaixo de 60%, então não era falta de CPU. Conclusão: o número depende da configuração de telemetria e do jeito do teste; ele não é o limite do Istio. Ainda assim, mesmo no padrão, o Istio respondeu mais devagar que A e B. No mesmo teste ligamos o circuit breaker, que recusa na hora o que passa do limite: funcionou nos dois casos, com 66% de recusas no B e 89% no C.</aside>
+</section>

@@ -1,0 +1,30 @@
+# Clientes de teste: "load" (fortio, carga) e "curl" (testes pontuais). Aplicar em cada namespace.
+apiVersion: v1
+kind: ServiceAccount
+metadata: {name: client}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: load}
+spec:
+  replicas: 1
+  selector: {matchLabels: {app: load}}
+  template:
+    metadata: {labels: {app: load}}
+    spec:
+      serviceAccountName: client
+      nodeSelector: {role: load}
+      containers: [{name: fortio, image: fortio/fortio:1.69.5, args: ["server", "-http-port", "8082", "-redirect-port", "disabled"]}]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: curl}
+spec:
+  replicas: 1
+  selector: {matchLabels: {app: curl}}
+  template:
+    metadata: {labels: {app: curl}}
+    spec:
+      serviceAccountName: client
+      nodeSelector: {role: load}
+      containers: [{name: curl, image: curlimages/curl:8.10.1, command: ["sleep", "infinity"]}]

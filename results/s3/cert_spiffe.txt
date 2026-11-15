@@ -1,0 +1,4 @@
+        Issuer: O=cluster.local
+            Not Before: Nov 14 19:26:45 2026 GMT
+            Not After : Nov 15 19:28:45 2026 GMT
+                URI:spiffe://cluster.local/ns/mesh/sa/frontend

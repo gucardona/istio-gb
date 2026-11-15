@@ -1,0 +1,9 @@
+<section id="latencia">
+<div class="head">
+<p class="eyebrow">RESULTADO · LATÊNCIA</p>
+<h2>O custo vem dos proxies, não da criptografia</h2>
+</div>
+<img class="chart" style="width:1664px; height:540px" src="/_blob/dbb6a4d0c667c81e1baf05c280726163" alt="Barras de latência p50 e p99 nos modos A, B e C. Com 1 conexão: A 1,4 ms, B 1,5 ms, C 4,6 ms no p50. Com 32 conexões: A cerca de 7,6 ms, B cerca de 8,5 ms, C cerca de 46 ms no p50 e até 130 ms no p99.">
+<p class="lead" style="width:1600px">B fica igual a A: o mTLS no Go custa menos de 0,1 ms. C soma cerca de 1 ms por salto com 1 conexão e chega a cerca de 46 ms com 32.</p>
+<aside>Leitura principal: quem custa caro não é o TLS, porque o modo B também cifra e quase não muda. O custo é passar por dois Envoys a cada salto, mais a telemetria. Com 32 conexões em nós de 2 vCPU, o efeito cresce muito. A RAM da cadeia vai de cerca de 30 Mi para cerca de 190 Mi.</aside>
+</section>

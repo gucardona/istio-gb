@@ -1,0 +1,20 @@
+# Mesma falha, mas o frontend agora tem timeout de 1s e 1 retentativa (500ms por tentativa) ao chamar catalog.
+# O timeout fica um salto ANTES da falha: no Istio o atraso injetado não conta no timeout da mesma rota.
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata: {name: inventory}
+spec:
+  hosts: [inventory]
+  http:
+  - fault: {delay: {percentage: {value: 50}, fixedDelay: 2s}}
+    route: [{destination: {host: inventory}}]
+---
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata: {name: catalog}
+spec:
+  hosts: [catalog]
+  http:
+  - timeout: 1s
+    retries: {attempts: 1, perTryTimeout: 500ms, retryOn: "5xx,gateway-error,reset"}
+    route: [{destination: {host: catalog}}]

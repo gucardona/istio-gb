@@ -1,0 +1,14 @@
+<section id="vel-baixa">
+<div class="ev">
+<div class="col">
+<p class="eyebrow">GRÁFICOS: TEMPO DE RESPOSTA, 1 USUÁRIO</p>
+<h2 style="font-size:52px">Com pouco tráfego, todos respondem rápido</h2>
+<div class="num na"><p class="big" style="font-size:56px">1,4 ms</p><p class="lbl">caso A</p></div>
+<div class="num nb"><p class="big" style="font-size:56px">1,5 ms</p><p class="lbl">caso B</p></div>
+<div class="num nc"><p class="big" style="font-size:56px">4,6 ms</p><p class="lbl">caso C</p></div>
+<p class="small">Tempo de resposta típico (mediana). O Istio soma cerca de 3 ms, o que quase não se nota.</p>
+</div>
+<img class="shot" style="background:#E6E6E6" src="/_blob/d285418785b83f812adea8557fc62fc9" alt="Gráfico do fortio comparando as latências dos casos B, C e A com 50 pedidos por segundo e 1 conexão: o caso C fica mais alto, com mediana de 4,6 ms; A e B ficam em torno de 1,5 ms">
+</div>
+<aside>Esta é a tela do fortio comparando os três casos com 1 usuário fazendo 50 pedidos por segundo. Cada linha colorida é um percentil, e os pontos no eixo de baixo são os casos, na ordem B, C e A. O ponto do meio, que é o Istio, fica mais alto. Em números: 1,4 ms no A, 1,5 ms no B e 4,6 ms no C. Duas coisas para notar. A criptografia do caso B quase não pesa, menos de 0,1 ms. E o Istio acrescenta cerca de 1 ms por serviço, porque cada pedido passa por dois proxies a cada salto. Com pouco tráfego, essa diferença é pequena.</aside>
+</section>

@@ -1,0 +1,78 @@
+
+[1m### 1. Mesmo código, duas malhas: no 'plain' cada pod tem 1 container; no 'mesh' tem 2 (app + istio-proxy)[0m
+$ kubectl get pods -n plain / -n mesh
+NAME                        READY   STATUS    RESTARTS   AGE
+frontend-6864859d8c-h5zqb   1/1     Running   0          17h
+NAME                       READY   STATUS    RESTARTS   AGE
+frontend-8d5bbd7fb-vt4n4   2/2     Running   0          17h
+
+[1m### 2. Quem decide a injeção: um label no namespace (webhook mutante do istiod)[0m
+$ kubectl get ns mesh plain --show-labels
+NAME    STATUS   AGE   LABELS
+mesh    Active   19h   istio-injection=enabled,kubernetes.io/metadata.name=mesh
+plain   Active   19h   kubernetes.io/metadata.name=plain
+
+[1m### 3. O que o Kubernetes realmente criou no pod do mesh (o YAML nosso só tinha 1 container)[0m
+$ kubectl get pod frontend -o jsonpath initContainers/containers
+initContainers: istio-init
+containers:     app istio-proxy
+
+[1m### 4. O initContainer istio-init redireciona TODO tráfego do pod para o Envoy via iptables (a app nem sabe)[0m
+$ kubectl get pod -o jsonpath (args do istio-init)
+["istio-iptables" "-p" "15001" "-z" "15006" "-u" "1337" "-m" "REDIRECT" "-i" "*" "-x" "" "-b" "*" "-d" "15090 15021 15020" "--log_output_level=default:info"]
+
+[1m### 5. Plano de controle: um único istiod + ingress gateway[0m
+$ kubectl get pods -n istio-system
+NAME                                    READY   STATUS    RESTARTS   AGE
+istio-ingressgateway-57b68d6958-qtzcd   1/1     Running   0          19h
+istiod-797454dc48-j97db                 1/1     Running   0          19h
+
+[1m### 6. A configuração do Istio são CRDs do Kubernetes (kubectl apply, versionável em Git)[0m
+$ kubectl get virtualservice,destinationrule,peerauthentication,authorizationpolicy -n mesh
+NAME                                      GATEWAYS           HOSTS   AGE
+virtualservice.networking.istio.io/shop   ["shop-gateway"]   ["*"]   19h
+
+NAME                                          HOST      AGE
+destinationrule.networking.istio.io/catalog   catalog   19h
+
+NAME                                           MODE         AGE
+peerauthentication.security.istio.io/default   PERMISSIVE   19h
+
+[1m### 7. O istiod empurra config para cada Envoy via xDS: todos sincronizados?[0m
+$ istioctl proxy-status
+NAME                                                   CLUSTER        CDS                LDS                EDS                RDS          
+catalog-v1-667954c7c7-2cgjt.mesh                       Kubernetes     SYNCED (7m25s)     SYNCED (7m25s)     SYNCED (7m25s)     SYNCED (7m25s
+catalog-v2-7678798989-vxv2x.mesh                       Kubernetes     SYNCED (7m29s)     SYNCED (7m29s)     SYNCED (7m29s)     SYNCED (7m29s
+curl-75fdf9bd6d-26b4z.mesh                             Kubernetes     SYNCED (7m29s)     SYNCED (7m29s)     SYNCED (7m29s)     SYNCED (7m29s
+frontend-8d5bbd7fb-vt4n4.mesh                          Kubernetes     SYNCED (3m39s)     SYNCED (3m39s)     SYNCED (3m39s)     SYNCED (3m39s
+inventory-6dbb75b46c-68c64.mesh                        Kubernetes     SYNCED (7m29s)     SYNCED (7m29s)     SYNCED (7m29s)     SYNCED (7m29s
+load-d7899f448-5khc4.mesh                              Kubernetes     SYNCED (3m42s)     SYNCED (3m42s)     SYNCED (3m42s)     SYNCED (3m42s
+
+[1m### 8. O que o Envoy do frontend sabe sobre 'catalog' (service discovery vindo do K8s, não do DNS da app)[0m
+$ istioctl proxy-config endpoints deploy/frontend -n mesh | grep catalog
+ENDPOINT                                                STATUS      OUTLIER CHECK     CLUSTER
+10.224.0.34:8080                                        HEALTHY     OK                outbound|8080||catalog.plain.svc.cluster.local
+10.224.0.35:8080                                        HEALTHY     OK                outbound|8080||catalog.plain.svc.cluster.local
+10.224.0.37:8080                                        HEALTHY     OK                outbound|8080||catalog.applib.svc.cluster.local
+10.224.0.51:8080                                        HEALTHY     OK                outbound|8080|v2|catalog.mesh.svc.cluster.local
+10.224.0.51:8080                                        HEALTHY     OK                outbound|8080||catalog.mesh.svc.cluster.local
+10.224.0.52:8080                                        HEALTHY     OK                outbound|8080|v1|catalog.mesh.svc.cluster.local
+10.224.0.52:8080                                        HEALTHY     OK                outbound|8080||catalog.mesh.svc.cluster.local
+10.224.0.55:8080                                        HEALTHY     OK                outbound|8080||catalog.applib.svc.cluster.local
+
+[1m### 9. Identidade criptográfica do workload (SPIFFE, certificado X.509 de 24h, rotacionado sozinho)[0m
+$ istioctl proxy-config secret deploy/frontend -n mesh
+RESOURCE NAME     TYPE           STATUS     VALID CERT     SERIAL NUMBER                        NOT AFTER     
+default           Cert Chain     ACTIVE     true           cd30bc3b9c9a79fbe1477fe4291c08aa     2026-11-16T08:
+ROOTCA            CA             ACTIVE     true           1c3d406fdaadd9c3d9938f98490e5297     2036-11-11T18:
+
+[1m### 10. Métricas L7 sem uma linha de instrumentação na app (vêm do sidecar)[0m
+$ kubectl exec frontend -c istio-proxy -- pilot-agent request GET stats/prometheus | grep istio_requests_total
+istio_requests_total{reporter="destination",source_workload="load",source_canonical_service="load",source_canonical_revision="latest",source_workload_namespace="mesh",source_principal="spiffe://cluster.local/ns/mesh/sa/client",source_app="load",source_version="unknown",source_cluster="Kubernetes",destination_workload="frontend",
+istio_requests_total{reporter="source",source_workload="frontend",source_canonical_service="frontend",source_canonical_revision="v1",source_workload_namespace="mesh",source_principal="spiffe://cluster.local/ns/mesh/sa/frontend",source_app="frontend",source_version="v1",source_cluster="Kubernetes",destination_workload="catalog-v1
+istio_requests_total{reporter="source",source_workload="frontend",source_canonical_service="frontend",source_canonical_revision="v1",source_workload_namespace="mesh",source_principal="spiffe://cluster.local/ns/mesh/sa/frontend",source_app="frontend",source_version="v1",source_cluster="Kubernetes",destination_workload="catalog-v2
+
+[1m### 11. Mesma imagem nos 3 namespaces: no mesh a app roda com TLS, retry e métricas DESLIGADOS (só o modo applib liga por env)[0m
+$ kubectl get deploy frontend -o jsonpath env (mesh vs applib)
+mesh    NAME=frontend VERSION=v1 UPSTREAM=http://catalog:8080 
+applib  NAME=frontend VERSION=v1 UPSTREAM=https://catalog:8080 TLS_DIR=/tls METRICS=1 

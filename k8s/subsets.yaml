@@ -1,0 +1,7 @@
+# Define as versões (subsets) de catalog. Necessário para o canário.
+apiVersion: networking.istio.io/v1
+kind: DestinationRule
+metadata: {name: catalog}
+spec:
+  host: catalog
+  subsets: [{name: v1, labels: {version: v1}}, {name: v2, labels: {version: v2}}]

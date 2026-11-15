@@ -1,0 +1,14 @@
+<section id="limitacoes">
+<div class="head">
+<p class="eyebrow">LIMITAÇÕES</p>
+<h2>Cuidados ao ler estes números</h2>
+</div>
+<ul class="pts" style="width:1600px">
+<li>As máquinas eram pequenas (2 vCPU). A comparação entre os casos vale; os valores absolutos, não.</li>
+<li>Usamos rastreamento em 100% e log de cada pedido, o que deixa o Istio mais lento; só a vazão foi medida também sem eles.</li>
+<li>Não isolamos a causa exata da lentidão do Istio com 32 usuários.</li>
+<li>Fizemos poucas rodadas, com uma única aplicação e só o modo sidecar do Istio.</li>
+<li>O caso B não renova certificados, então parece mais simples do que seria em produção.</li>
+</ul>
+<aside>Alguns cuidados. Usamos máquinas de 2 vCPU por causa da cota do Azure for Students, então os tempos absolutos não valem para outros ambientes; o que vale é a comparação entre os casos. Não isolamos a causa exata da lentidão com 32 usuários; a explicação mais provável é a disputa de CPU entre proxies e serviços na mesma máquina. Fizemos três rodadas por configuração, com uma aplicação só e só o modo sidecar. E o caso B não renova certificados, o que faz ele parecer mais simples do que seria de verdade.</aside>
+</section>

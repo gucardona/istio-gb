@@ -1,0 +1,17 @@
+<section id="ev-metricas">
+<div class="head">
+<p class="eyebrow">EVIDÊNCIA · GRAFANA E LOKI</p>
+<h2>Métricas e logs sem instrumentar a aplicação</h2>
+</div>
+<div style="display:flex; gap:32px">
+<div style="display:flex; flex-direction:column; gap:16px; width:816px">
+<img class="shot" style="width:816px; height:510px" src="/_blob/e328b40a797252871cb4c5b9cfad3af8" alt="Istio Mesh Dashboard no Grafana: 90 req/s, 100% de sucesso, zero 4xx e 5xx, tabela de p50, p90 e p99 por serviço">
+<p class="small">Grafana: volume, sucesso e p50/p90/p99 por serviço, prontos para qualquer serviço na malha.</p>
+</div>
+<div style="display:flex; flex-direction:column; gap:16px; width:816px">
+<img class="shot" style="width:816px; height:510px" src="/_blob/1ecce8cad11189332536a2c592342d5d" alt="Grafana Explore com Loki mostrando o access log do istio-proxy no namespace mesh, com volume de logs e uma linha de acesso detalhada">
+<p class="small">Loki: access log do Envoy com código, duração e x-request-id, o que permite ligar o log ao trace.</p>
+</div>
+</div>
+<aside>Os dashboards do Istio no Grafana funcionam sem configuração por serviço. Os logs de acesso vêm do Envoy, coletados pelo Grafana Alloy e guardados no Loki. Foram ligados com um único recurso Telemetry.</aside>
+</section>

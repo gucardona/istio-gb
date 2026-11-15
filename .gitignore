@@ -1,0 +1,11 @@
+app/svc
+istio-1.26.0/
+tools/node_modules/
+.acr-name
+paper/*.aux
+paper/*.log
+paper/*.bbl
+paper/*.blg
+paper/*.out
+paper/overleaf/
+paper/overleaf.zip

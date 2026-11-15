@@ -1,0 +1,9 @@
+# Falha injetada na chamada catalog -> inventory: 50% delas demoram 2s.
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata: {name: inventory}
+spec:
+  hosts: [inventory]
+  http:
+  - fault: {delay: {percentage: {value: 50}, fixedDelay: 2s}}
+    route: [{destination: {host: inventory}}]

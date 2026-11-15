@@ -1,0 +1,13 @@
+<section id="deployado" class="warm">
+<div class="head">
+<p class="eyebrow">METODOLOGIA DE TESTES: PROTÓTIPO</p>
+<h2>Um espaço separado para cada caso</h2>
+</div>
+<div class="cards">
+<div class="card ca in" style="--i:0"><p class="tag">plain</p><h3>Caso A</h3><p class="txt">Os quatro serviços (frontend, catalog v1 e v2, inventory), cada um sozinho no seu pod.</p></div>
+<div class="card cb in" style="--i:1"><p class="tag">applib</p><h3>Caso B</h3><p class="txt">Os mesmos serviços, com as funções de proteção ligadas no código e certificados gerados por nós.</p></div>
+<div class="card cc in" style="--i:2"><p class="tag">mesh</p><h3>Caso C</h3><p class="txt">Os mesmos serviços, e o Istio coloca automaticamente um proxy em cada pod.</p></div>
+</div>
+<p class="takeaway">Em cada espaço também rodam duas ferramentas de teste: o fortio, que gera carga, e o curl, que testa quem consegue acessar o quê. Elas ficam numa máquina separada para não atrapalhar as medições.</p>
+<aside>No Kubernetes, separamos os casos em três namespaces, que são como pastas isoladas: plain para o caso A, applib para o B e mesh para o C. Os três têm exatamente os mesmos serviços. No B, a mesma imagem roda com as funções de proteção ligadas por variáveis de ambiente, e os certificados que geramos ficam guardados em Secrets. No C, basta marcar o namespace com um rótulo e o Istio injeta o proxy em cada pod. Em cada namespace também colocamos o fortio, para gerar carga, e o curl, para testar acesso. Eles rodam numa máquina só deles, para não disputar CPU com os serviços.</aside>
+</section>

@@ -1,0 +1,13 @@
+<section id="problema">
+<div class="head">
+<p class="eyebrow">ESTRATÉGIA: O PROBLEMA</p>
+<h2 style="width:1600px">Em microsserviços, a comunicação entre os serviços também precisa de cuidado</h2>
+</div>
+<div class="cards">
+<div class="card in" style="--i:0"><h3>Segurança</h3><p class="txt">O tráfego entre os serviços deve ser cifrado, e cada serviço só deve aceitar chamadas de quem tem permissão.</p></div>
+<div class="card in" style="--i:1"><h3>Resiliência</h3><p class="txt">Se um serviço fica lento ou cai, os outros não podem ficar parados esperando por ele.</p></div>
+<div class="card in" style="--i:2"><h3>Visibilidade</h3><p class="txt">Precisamos saber quantos pedidos passam, quantos dão erro e quanto tempo cada um leva.</p></div>
+</div>
+<p class="takeaway">Normalmente cada serviço implementa isso no próprio código. O Istio faz o mesmo fora do código, nos proxies. Medimos o que ele resolve e quanto custa.</p>
+<aside>Quando um sistema é dividido em microsserviços, toda conversa entre eles passa pela rede, e isso traz três preocupações. Segurança: cifrar o tráfego e garantir que só quem tem permissão converse com cada serviço. Resiliência: se um serviço fica lento, os outros não podem travar junto. Visibilidade: saber o que está acontecendo, quantos pedidos, quantos erros, quanto tempo. O jeito tradicional é cada time programar isso no próprio serviço, em cada linguagem. O Istio coloca isso numa camada separada, a service mesh. A nossa pergunta foi se isso funciona na prática e qual é o preço.</aside>
+</section>

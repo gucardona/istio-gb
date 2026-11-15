@@ -1,0 +1,17 @@
+<section id="yaml-seg">
+<div class="head">
+<p class="eyebrow">APÊNDICE: YAML DO ISTIO, SEGURANÇA</p>
+<h2>Três trechos de YAML no lugar do TLS no código</h2>
+</div>
+<div class="code2">
+<div class="snip">
+<p class="yaml">kind: <span class="kw">Namespace</span><br>metadata:<br>&#160;&#160;name: mesh<br>&#160;&#160;labels: {istio-injection: <span class="kw">enabled</span>}<br><br>kind: <span class="kw">PeerAuthentication</span><br>spec: {mtls: {mode: <span class="kw">STRICT</span>}}</p>
+<p class="why">Liga o proxy e exige mTLS</p>
+</div>
+<div class="snip">
+<p class="yaml">kind: <span class="kw">AuthorizationPolicy</span><br>spec:<br>&#160;&#160;selector: {app: catalog}<br>&#160;&#160;action: <span class="kw">ALLOW</span><br>&#160;&#160;rules:<br>&#160;&#160;- from: principals:<br>&#160;&#160;&#160;&#160;[".../sa/<span class="kw">frontend</span>"]</p>
+<p class="why">Só o frontend chama o catalog</p>
+</div>
+</div>
+<aside>Estes são os pontos principais da configuração do Istio para segurança. Primeiro, o rótulo istio-injection no namespace: é ele que faz o Istio colocar o proxy em cada pod, sem mudar o deployment. Depois, a PeerAuthentication em modo STRICT: a partir dela, os serviços só aceitam conexões com TLS mútuo, e quem está fora da malha é recusado. O Istio cuida dos certificados e troca cada um a cada 24 horas. À direita, a AuthorizationPolicy: ela diz que o catalog só aceita chamadas da identidade do frontend, que é a service account dele. No caso B, isso tudo custou um arquivo Go de 46 linhas e um script para gerar certificados, sem renovação automática.</aside>
+</section>

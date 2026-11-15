@@ -1,0 +1,16 @@
+<section id="metricas">
+<div class="head">
+<p class="eyebrow">METODOLOGIA DE TESTES: MÉTRICAS</p>
+<h2>O que medimos e com qual ferramenta</h2>
+</div>
+<table>
+<tr class="hd"><th style="width:30%">Métrica</th><th style="width:45%">O que indica</th><th style="width:25%">Ferramenta</th></tr>
+<tr><td>Tempo de resposta</td><td>Mediana (p50) e os pedidos mais lentos (p90, p99)</td><td>fortio</td></tr>
+<tr><td>Vazão</td><td>Pedidos por segundo atendidos</td><td>fortio</td></tr>
+<tr><td>Taxa de sucesso</td><td>Respostas 200, 403 e 503 em cada teste</td><td>fortio e curl</td></tr>
+<tr><td>CPU e memória</td><td>Consumo real dos contêineres de cada caso</td><td>Prometheus</td></tr>
+<tr><td>Esforço</td><td>Linhas de código Go ou de YAML</td><td>contagem manual</td></tr>
+<tr><td>Observabilidade</td><td>Mapa, painéis, logs e traces disponíveis</td><td>Kiali, Grafana, Loki, Jaeger</td></tr>
+</table>
+<aside>Estas são as métricas. O tempo de resposta foi medido pelo fortio em percentis: a mediana, que é o pedido típico, e o p90 e o p99, que mostram os pedidos mais lentos. A vazão é quantos pedidos por segundo cada caso aguenta. A taxa de sucesso olha os códigos HTTP: 200 é sucesso, 403 é acesso negado e 503 é recusa do circuit breaker. CPU e memória vieram do Prometheus, que lê o consumo de cada contêiner. O esforço é a contagem de linhas. E a observabilidade avaliamos olhando o que cada caso deixa ver nas ferramentas.</aside>
+</section>

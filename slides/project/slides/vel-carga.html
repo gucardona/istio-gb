@@ -1,0 +1,14 @@
+<section id="vel-carga">
+<div class="ev">
+<div class="col">
+<p class="eyebrow">GRÁFICOS: TEMPO DE RESPOSTA, 32 USUÁRIOS</p>
+<h2 style="font-size:52px">Com carga alta, o Istio fica bem mais lento</h2>
+<div class="num na"><p class="big" style="font-size:56px">7,7 ms</p><p class="lbl">caso A</p></div>
+<div class="num nb"><p class="big" style="font-size:56px">8,4 ms</p><p class="lbl">caso B</p></div>
+<div class="num nc"><p class="big" style="font-size:56px">45,8 ms</p><p class="lbl">caso C</p></div>
+<p class="small">O caso B também cifra o tráfego e ficou perto do A, então o atraso está nos proxies.</p>
+</div>
+<img class="shot" style="background:#E6E6E6" src="/_blob/d494fef302473ad1a7d613b2f11f688b" alt="Gráfico do fortio comparando as latências dos casos B, C e A com 500 pedidos por segundo e 32 conexões: C tem mediana de 46 ms e p99 de 130 ms; A e B ficam abaixo de 25 ms">
+</div>
+<aside>A mesma comparação, agora com 32 usuários ao mesmo tempo e 500 pedidos por segundo. Aqui a diferença aparece: A e B ficam em torno de 8 ms, e o Istio vai para 46 ms; os pedidos mais lentos do Istio passam de 130 ms. O detalhe importante é que o caso B também cifra tudo e quase não mudou. Então o que pesa não é a criptografia, e sim os proxies extras, que disputam CPU com os serviços em máquinas de só 2 vCPU. O número exato depende do hardware; o que vale é a diferença entre os casos no mesmo ambiente.</aside>
+</section>

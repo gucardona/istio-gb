@@ -1,0 +1,35 @@
+% S0
+\begin{tabular}{rlrrrrr}\hline
+req/s & Modo & Vaz\~ao & p50 (ms) & $\sigma$ & p99 (ms) & $\sigma$ \\ \hline
+50 & Sem malha & 50 & 7.6 & 0.2 & 18.5 & 1.9 \\
+50 & Istio & 50 & 42.0 & 0.8 & 90.5 & 23.6 \\
+500 & Sem malha & 500 & 7.4 & 0.0 & 18.4 & 0.9 \\
+500 & Istio & 499 & 39.7 & 0.8 & 118.5 & 9.0 \\
+\hline\end{tabular}
+
+% S1
+\begin{tabular}{rrrr}\hline
+v1/v2 config. & v1 obs. (\%) & v2 obs. (\%) & n \\ \hline
+100/0 & 100.0 & 0.0 & 200 \\
+90/10 & 95.0 & 5.0 & 200 \\
+50/50 & 52.0 & 48.0 & 200 \\
+0/100 & 0.0 & 100.0 & 200 \\
+\hline\end{tabular}
+
+% S2
+\begin{tabular}{lrrrr}\hline
+Configura\c{c}\~ao & p50 (ms) & p99 (ms) & Erros (\%) & Vaz\~ao \\ \hline
+Sem falha & 87 & 190 & 0.0 & 50 \\
+Falha (50\% +2 s) & 46 & 2055 & 0.0 & 43 \\
+Falha + timeout/retry & 510 & 1139 & 25.5 & 48 \\
+\hline\end{tabular}
+
+% CB
+\begin{tabular}{lrrrr}\hline
+ & Total & 200 & 503 & p50 (ms) \\ \hline
+Sem circuit breaker & 12895 & 12895 & 0 & 14.2 \\
+Com circuit breaker & 18153 & 334 & 17819 & 5.5 \\
+\hline\end{tabular}
+
+% TOP plain (m cores / MiB, soma dos pods, media das reps): app cpu=151 mem=28; sidecar cpu=0 mem=0
+% TOP mesh (m cores / MiB, soma dos pods, media das reps): app cpu=162 mem=29; sidecar cpu=505 mem=213

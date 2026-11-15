@@ -1,0 +1,173 @@
+{
+  "status": "success",
+  "data": {
+    "resultType": "vector",
+    "result": [
+      {
+        "metric": {
+          "destination_workload": "frontend",
+          "response_code": "200",
+          "source_workload": "curl"
+        },
+        "value": [
+          1794685922.264,
+          "1409"
+        ]
+      },
+      {
+        "metric": {
+          "destination_workload": "frontend",
+          "response_code": "200",
+          "source_workload": "istio-ingressgateway"
+        },
+        "value": [
+          1794685922.264,
+          "2"
+        ]
+      },
+      {
+        "metric": {
+          "destination_workload": "frontend",
+          "response_code": "200",
+          "source_workload": "load"
+        },
+        "value": [
+          1794685922.264,
+          "86773"
+        ]
+      },
+      {
+        "metric": {
+          "destination_workload": "catalog-v1",
+          "response_code": "200",
+          "source_workload": "load"
+        },
+        "value": [
+          1794685922.264,
+          "16933"
+        ]
+      },
+      {
+        "metric": {
+          "destination_workload": "catalog-v2",
+          "response_code": "200",
+          "source_workload": "load"
+        },
+        "value": [
+          1794685922.264,
+          "16918"
+        ]
+      },
+      {
+        "metric": {
+          "destination_workload": "frontend",
+          "response_code": "504",
+          "source_workload": "load"
+        },
+        "value": [
+          1794685922.264,
+          "782"
+        ]
+      },
+      {
+        "metric": {
+          "destination_workload": "catalog-v1",
+          "response_code": "503",
+          "source_workload": "load"
+        },
+        "value": [
+          1794685922.264,
+          "4"
+        ]
+      },
+      {
+        "metric": {
+          "destination_workload": "catalog-v2",
+          "response_code": "503",
+          "source_workload": "load"
+        },
+        "value": [
+          1794685922.264,
+          "3"
+        ]
+      },
+      {
+        "metric": {
+          "destination_workload": "catalog-v1",
+          "response_code": "403",
+          "source_workload": "curl"
+        },
+        "value": [
+          1794685922.264,
+          "2"
+        ]
+      },
+      {
+        "metric": {
+          "destination_workload": "inventory",
+          "response_code": "200",
+          "source_workload": "catalog-v2"
+        },
+        "value": [
+          1794685922.264,
+          "43281"
+        ]
+      },
+      {
+        "metric": {
+          "destination_workload": "inventory",
+          "response_code": "200",
+          "source_workload": "catalog-v1"
+        },
+        "value": [
+          1794685922.264,
+          "43552"
+        ]
+      },
+      {
+        "metric": {
+          "destination_workload": "catalog-v1",
+          "response_code": "200",
+          "source_workload": "frontend"
+        },
+        "value": [
+          1794685922.264,
+          "36912"
+        ]
+      },
+      {
+        "metric": {
+          "destination_workload": "catalog-v2",
+          "response_code": "200",
+          "source_workload": "frontend"
+        },
+        "value": [
+          1794685922.264,
+          "36825"
+        ]
+      },
+      {
+        "metric": {
+          "destination_workload": "catalog-v1",
+          "response_code": "504",
+          "source_workload": "frontend"
+        },
+        "value": [
+          1794685922.264,
+          "195"
+        ]
+      },
+      {
+        "metric": {
+          "destination_workload": "catalog-v2",
+          "response_code": "504",
+          "source_workload": "frontend"
+        },
+        "value": [
+          1794685922.264,
+          "194"
+        ]
+      }
+    ]
+  }
+}

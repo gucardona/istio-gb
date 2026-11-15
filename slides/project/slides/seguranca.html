@@ -1,0 +1,15 @@
+<section id="seguranca" class="warm">
+<div class="head">
+<p class="eyebrow">GRÁFICOS E RESULTADOS: SEGURANÇA</p>
+<h2>B e C bloquearam os mesmos acessos</h2>
+</div>
+<table>
+<tr class="hd"><th style="width:34%">Tentativa de acesso</th><th style="width:22%">A</th><th style="width:22%">B</th><th style="width:22%">C</th></tr>
+<tr><td>Sem certificado</td><td>entra</td><td>bloqueado</td><td>bloqueado</td></tr>
+<tr><td>Com certificado válido</td><td>entra</td><td>entra</td><td>entra</td></tr>
+<tr><td>Com a identidade errada</td><td>entra</td><td>bloqueado</td><td>bloqueado</td></tr>
+<tr><td>Renovação dos certificados</td><td>não tem</td><td>manual</td><td>automática</td></tr>
+</table>
+<p class="takeaway">No Istio os certificados são trocados automaticamente a cada 24 horas. No caso B nós os geramos uma vez, à mão.</p>
+<aside>No caso A, qualquer programa dentro do cluster consegue falar com qualquer serviço. No caso B, quem chega sem certificado não consegue nem abrir a conexão, e quem tem certificado mas não é o frontend recebe erro 403 do catalog, porque o nosso código confere o nome no certificado. No caso C o resultado é o mesmo, só que feito por duas regras do Istio. A diferença está na última linha: no B, nós geramos os certificados uma vez e eles não se renovam; no C, o Istio cria e troca cada certificado a cada 24 horas, sem ninguém fazer nada.</aside>
+</section>

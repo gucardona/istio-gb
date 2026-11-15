@@ -1,0 +1,13 @@
+<section id="estrategia">
+<div class="head">
+<p class="eyebrow">ESTRATÉGIA: OS TRÊS CASOS</p>
+<h2>A mesma aplicação, montada de três formas</h2>
+</div>
+<div class="cards">
+<div class="card ca in" style="--i:0"><p class="tag">CASO A</p><h3>Sem proteção</h3><p class="txt">HTTP simples, sem criptografia e sem controle de acesso. É a nossa referência de velocidade.</p></div>
+<div class="card cb in" style="--i:1"><p class="tag">CASO B</p><h3>Proteção no código</h3><p class="txt">Nós mesmos programamos em Go o que o Istio faz: criptografia, permissões, tempo limite, nova tentativa e métricas.</p></div>
+<div class="card cc in" style="--i:2"><p class="tag">CASO C</p><h3>Istio</h3><p class="txt">O código volta a ser simples, e o Istio cuida de tudo isso por fora, através dos proxies.</p></div>
+</div>
+<p class="takeaway">Com o caso B dá para separar o custo das funções (criptografia, tempo limite, nova tentativa) do custo dos proxies do Istio.</p>
+<aside>Para comparar de forma justa, montamos três versões. O caso A não tem proteção nenhuma: é o mais rápido, mas qualquer um entra. O caso B tem as mesmas funções do Istio, só que programadas por nós em Go. O caso C usa o código simples e deixa o Istio fazer o trabalho. Se a gente comparasse o Istio só com o caso A, ia parecer que ele é caro à toa, porque ele faz muito mais coisa. Com o caso B no meio, dá para ver quanto custa cada função e quanto custa o Istio. Os três usam a mesma imagem, as mesmas máquinas e a mesma carga.</aside>
+</section>

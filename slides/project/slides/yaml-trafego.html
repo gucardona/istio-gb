@@ -1,0 +1,17 @@
+<section id="yaml-trafego" class="warm">
+<div class="head">
+<p class="eyebrow">APÊNDICE: YAML DO ISTIO, TRÁFEGO E FALHAS</p>
+<h2>Limite de tempo, nova tentativa e canário em YAML</h2>
+</div>
+<div class="code2">
+<div class="snip">
+<p class="yaml">kind: <span class="kw">VirtualService</span><br>spec:<br>&#160;&#160;hosts: [catalog]<br>&#160;&#160;http:<br>&#160;&#160;- timeout: <span class="kw">1s</span><br>&#160;&#160;&#160;&#160;retries:<br>&#160;&#160;&#160;&#160;&#160;&#160;attempts: <span class="kw">1</span><br>&#160;&#160;&#160;&#160;&#160;&#160;perTryTimeout: <span class="kw">500ms</span></p>
+<p class="why">Não espera mais que 1 s</p>
+</div>
+<div class="snip">
+<p class="yaml">kind: <span class="kw">VirtualService</span><br>spec:<br>&#160;&#160;http:<br>&#160;&#160;- route:<br>&#160;&#160;&#160;&#160;- subset: v1, weight: <span class="kw">90</span><br>&#160;&#160;&#160;&#160;- subset: v2, weight: <span class="kw">10</span><br><br>kind: <span class="kw">DestinationRule</span> · maxConnections: <span class="kw">1</span></p>
+<p class="why">Divide versões e limita conexões</p>
+</div>
+</div>
+<aside>À esquerda, o VirtualService que usamos no teste de falhas: cada chamada ao catalog tem no máximo 1 segundo, e se falhar tenta mais uma vez com limite de meio segundo. No caso B, isso mais o circuit breaker deram 120 linhas de Go. À direita, o mesmo tipo de objeto fazendo canário: 90% dos pedidos vão para a v1 e 10% para a v2, sem mudar réplicas. Para trocar a proporção basta mudar o número e rodar kubectl apply. Na última linha, a DestinationRule que faz o circuit breaker: limita as conexões e tira do ar a instância que começa a dar erro.</aside>
+</section>

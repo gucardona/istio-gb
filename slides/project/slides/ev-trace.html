@@ -1,0 +1,12 @@
+<section id="ev-trace">
+<div class="ev">
+<div class="col">
+<p class="eyebrow">EVIDÊNCIA · JAEGER</p>
+<h2>Uma requisição, três serviços, seis spans</h2>
+<p class="lead">Os sidecars criam os spans. A aplicação só repassa os cabeçalhos de trace.</p>
+<p class="small">inventory 1,9 ms · catalog 18,4 ms · frontend 24,6 ms: dá para ver quanto cada salto soma.</p>
+</div>
+<img class="shot" src="/_blob/8de788ae30878dce27031419d74bacfd" alt="Linha do tempo de um trace no Jaeger com 6 spans: load, frontend, catalog e inventory, total de 46 ms">
+</div>
+<aside>O tracing é a única função que pede algo da aplicação: repassar x-request-id, traceparent e os cabeçalhos b3. O resto é do Envoy. O span do load aparece deslocado por diferença de relógio entre os nós.</aside>
+</section>

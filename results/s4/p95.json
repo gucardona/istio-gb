@@ -1,0 +1,44 @@
+{
+  "status": "success",
+  "data": {
+    "resultType": "vector",
+    "result": [
+      {
+        "metric": {
+          "destination_workload": "frontend"
+        },
+        "value": [
+          1794685922.356,
+          "24.47493656067961"
+        ]
+      },
+      {
+        "metric": {
+          "destination_workload": "catalog-v2"
+        },
+        "value": [
+          1794685922.356,
+          "18.11888111888112"
+        ]
+      },
+      {
+        "metric": {
+          "destination_workload": "catalog-v1"
+        },
+        "value": [
+          1794685922.356,
+          "16.92654625984251"
+        ]
+      },
+      {
+        "metric": {
+          "destination_workload": "inventory"
+        },
+        "value": [
+          1794685922.356,
+          "4.841719077568134"
+        ]
+      }
+    ]
+  }
+}

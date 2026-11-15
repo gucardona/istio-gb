@@ -1,0 +1,4 @@
+apiVersion: telemetry.istio.io/v1
+kind: Telemetry
+metadata: {name: tracing-100, namespace: istio-system}
+spec: {tracing: [{randomSamplingPercentage: 100}]}

@@ -1,0 +1,15 @@
+<section id="resiliencia">
+<div class="head">
+<p class="eyebrow">GRÁFICOS: FALHAS, ESTOQUE LENTO EM METADE DOS PEDIDOS</p>
+<h2>Com um serviço lento, B e C cortaram a espera; o A esperou 2 s</h2>
+</div>
+<div style="display:flex; gap:56px; align-items:center">
+<img class="chart" style="width:1040px; height:520px" src="/_blob/c10a6a2472c850e9b1ebfe743a5041bc" alt="Barras de latência p99 com o inventory lento. Sem falha: A 29, B 31, C 232 ms. Com falha: cerca de 2.000 ms nos três. Com timeout e retry: B 1.256 ms, C 1.072 ms; A não tem a função.">
+<div style="display:flex; flex-direction:column; gap:32px; width:568px">
+<div class="num nb"><p class="big" style="font-size:120px">74%</p><p class="lbl">dos pedidos deram certo no caso B</p></div>
+<div class="num nc"><p class="big" style="font-size:120px">76%</p><p class="lbl">dos pedidos deram certo no caso C</p></div>
+<p class="small">Com um limite de 1 segundo e uma nova tentativa, o resultado foi o mesmo nos dois casos.</p>
+</div>
+</div>
+<aside>Neste teste deixamos o inventory lento de propósito: em metade dos pedidos ele demora 2 segundos. O gráfico mostra o tempo dos pedidos mais lentos. Sem nenhuma regra, os três casos esperam os 2 segundos inteiros. Com a regra ligada, limite de 1 segundo e uma nova tentativa, B e C cortam a espera para pouco mais de 1 segundo. O caso A não tem como reagir sem mudar o código. B e C acertaram cerca de 75% dos pedidos, que é o que a conta prevê: o pedido só falha se as duas tentativas caírem na metade lenta, 50% vezes 50%. O resultado foi igual, mas no B isso custou 120 linhas de Go e no C, 9 linhas de YAML.</aside>
+</section>

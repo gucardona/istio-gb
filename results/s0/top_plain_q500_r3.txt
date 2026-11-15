@@ -1,0 +1,7 @@
+POD                           NAME     CPU(cores)   MEMORY(bytes)   
+catalog-v1-76d9fd8cf8-xbnhr   app      40m          7Mi             
+catalog-v2-7c56488f76-qzctq   app      61m          7Mi             
+curl-75fdf9bd6d-9qqw6         curl     0m           0Mi             
+frontend-655c77bb7f-wsr8m     app      104m         7Mi             
+inventory-5f9f598bc4-g25fr    app      38m          7Mi             
+load-cc665d4fd-58wbq          fortio   47m          12Mi            

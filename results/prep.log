@@ -1,0 +1,80 @@
+WARNING: Note: The token in both the accessToken and refreshToken fields is an ACR Refresh Token, not an ACR Access Token. This ACR Refresh Token cannot be used directly to authenticate with registry APIs such as pushing/pulling images and listing repositories/tags. This ACR Refresh Token must be subsequently exchanged for an ACR Access.Please see https://aka.ms/acr/auth/oauth
+WARNING: You can perform manual login using the provided refresh token below, for example: 'docker login loginServer -u 00000000-0000-0000-0000-000000000000 -p refreshToken'
+2026/11/14 16:17:48 logged in via /home/gustavocardona/.docker/config.json
+2026/11/14 16:17:53 existing blob: sha256:777e9d0975e474519f4f14ff87e547cbb8f9fff4cfc4f1a147ac81906880e503
+2026/11/14 16:17:53 existing blob: sha256:2cc7ee286bf3a9e6af5f71756d7fc8e22e23ce65fec9047d774511ffcef79fa8
+2026/11/14 16:17:53 existing blob: sha256:fc4330146a1cc76e06ce6def693f5da42c16e2615be6f49e1ea5b6e249ff8262
+2026/11/14 16:17:53 existing blob: sha256:2780920e5dbfbe103d03a583ed75345306e572ec5a48cb10361f046767d9f29a
+2026/11/14 16:17:53 existing blob: sha256:d6b1b89eccacc15c2420b2776d72c1dae334a00805ed9af54bf2f71e4d536f28
+2026/11/14 16:17:53 existing blob: sha256:7c12895b777bcaa8ccae0605b4de635b68fc32d60fa08f421dc3818bf55ee212
+2026/11/14 16:17:53 existing blob: sha256:c172f21841dff4c8cf45cde46589c1c2616cefe7e819965e92e6d3475c428aa0
+2026/11/14 16:17:53 existing blob: sha256:3214acf345c0cc6bbdb56b698a41ccdefc624a09d6beb0d38b5de0b2303ecaf4
+2026/11/14 16:17:53 existing blob: sha256:52630fc75a18675c530ed9eba5f55eca09b03e91bd5bc15307918bbc1a7e7296
+2026/11/14 16:17:53 existing blob: sha256:dd64bf2dd177757451a98fcdc999a339c35dee5d9872d8f4dc69c8f3c4dd0112
+2026/11/14 16:17:53 existing blob: sha256:b839dfae01f66e15c6a8b63520557ed315bdfe036342fa7a0c537259f10d7a9a
+2026/11/14 16:17:53 existing blob: sha256:c3c9c2f21e6c3293a061cee538a81f4cb29ea224f43d075750ec702b923b77d7
+2026/11/14 16:17:53 existing blob: sha256:ec1b04bf2eb2122e86781f791b03ea0cf6588694e0f4a88245250224c186cdf0
+2026/11/14 16:17:53 pushed blob: sha256:3b06d4fae76872a0148d6e8b8c48707b1284be9c8a2601e7e8ce5f01e84e1db7
+2026/11/14 16:17:54 pushed blob: sha256:97e4a07271cbfd74f8b1cedeb6c2ba35e07082f8a96421ee3d6284b97cde3c18
+2026/11/14 16:17:54 acristiogb50113696.azurecr.io/svc:v1: digest: sha256:14f03ccb33f4d66679b974aca0b2c4f3482fe8a552eb640148afb859708d6cac size: 2525
+2026/11/14 16:17:55 existing blob: sha256:777e9d0975e474519f4f14ff87e547cbb8f9fff4cfc4f1a147ac81906880e503
+2026/11/14 16:17:55 existing blob: sha256:c172f21841dff4c8cf45cde46589c1c2616cefe7e819965e92e6d3475c428aa0
+2026/11/14 16:17:55 existing blob: sha256:fc4330146a1cc76e06ce6def693f5da42c16e2615be6f49e1ea5b6e249ff8262
+2026/11/14 16:17:55 existing blob: sha256:d6b1b89eccacc15c2420b2776d72c1dae334a00805ed9af54bf2f71e4d536f28
+2026/11/14 16:17:55 existing blob: sha256:2cc7ee286bf3a9e6af5f71756d7fc8e22e23ce65fec9047d774511ffcef79fa8
+2026/11/14 16:17:55 existing blob: sha256:2780920e5dbfbe103d03a583ed75345306e572ec5a48cb10361f046767d9f29a
+2026/11/14 16:17:55 existing blob: sha256:7c12895b777bcaa8ccae0605b4de635b68fc32d60fa08f421dc3818bf55ee212
+2026/11/14 16:17:55 existing blob: sha256:3214acf345c0cc6bbdb56b698a41ccdefc624a09d6beb0d38b5de0b2303ecaf4
+2026/11/14 16:17:55 existing blob: sha256:52630fc75a18675c530ed9eba5f55eca09b03e91bd5bc15307918bbc1a7e7296
+2026/11/14 16:17:55 existing blob: sha256:dd64bf2dd177757451a98fcdc999a339c35dee5d9872d8f4dc69c8f3c4dd0112
+2026/11/14 16:17:55 existing blob: sha256:b839dfae01f66e15c6a8b63520557ed315bdfe036342fa7a0c537259f10d7a9a
+2026/11/14 16:17:55 existing blob: sha256:c3c9c2f21e6c3293a061cee538a81f4cb29ea224f43d075750ec702b923b77d7
+2026/11/14 16:17:55 existing blob: sha256:ec1b04bf2eb2122e86781f791b03ea0cf6588694e0f4a88245250224c186cdf0
+2026/11/14 16:17:55 existing blob: sha256:97e4a07271cbfd74f8b1cedeb6c2ba35e07082f8a96421ee3d6284b97cde3c18
+2026/11/14 16:17:55 pushed blob: sha256:478f906324ceaa30e198e32a907d2b8b37edcbb23581924e5cee51ff6657728f
+2026/11/14 16:17:56 acristiogb50113696.azurecr.io/svc:v1: digest: sha256:1578eb274d231cc9c39cb4b012f937d22fac638f5e82bd3981454cae18e1de77 size: 2525
+{"schemaVersion":2,"mediaType":"application/vnd.oci.image.manifest.v1+json","config":{"mediaType":"application/vnd.oci.image.config.v1+json","size":2536,"digest":"sha256:478f906324ceaa30e198e32a907d2b
+imagem: acristiogb50113696.azurecr.io/svc:v1
+namespace/mesh unchanged
+namespace/plain unchanged
+namespace/legacy unchanged
+serviceaccount/frontend unchanged
+serviceaccount/catalog unchanged
+serviceaccount/inventory unchanged
+service/frontend unchanged
+service/catalog unchanged
+service/inventory unchanged
+deployment.apps/frontend configured
+deployment.apps/catalog-v1 configured
+deployment.apps/catalog-v2 configured
+deployment.apps/inventory configured
+serviceaccount/frontend unchanged
+serviceaccount/catalog unchanged
+serviceaccount/inventory unchanged
+service/frontend unchanged
+service/catalog unchanged
+service/inventory unchanged
+deployment.apps/frontend configured
+deployment.apps/catalog-v1 configured
+deployment.apps/catalog-v2 configured
+deployment.apps/inventory configured
+serviceaccount/client unchanged
+deployment.apps/load unchanged
+deployment.apps/curl unchanged
+serviceaccount/client unchanged
+deployment.apps/load unchanged
+deployment.apps/curl unchanged
+serviceaccount/client unchanged
+deployment.apps/load unchanged
+deployment.apps/curl unchanged
+gateway.networking.istio.io/shop-gateway unchanged
+virtualservice.networking.istio.io/shop unchanged
+destinationrule.networking.istio.io/catalog unchanged
+Waiting for deployment "catalog-v1" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "catalog-v2" rollout to finish: 1 old replicas are pending termination...
+deployment "curl" successfully rolled out
+deployment "load" successfully rolled out
+timed out waiting for the condition
+deployment "catalog-v2" exceeded its progress deadline
+deployment "frontend" exceeded its progress deadline
+deployment "inventory" exceeded its progress deadline

@@ -1,0 +1,10 @@
+# Só a política de resiliência (a falha vem da própria aplicação nos 3 modos): timeout 1s + 1 retentativa de 500ms.
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata: {name: catalog}
+spec:
+  hosts: [catalog]
+  http:
+  - timeout: 1s
+    retries: {attempts: 1, perTryTimeout: 500ms, retryOn: "5xx,gateway-error,reset"}
+    route: [{destination: {host: catalog}}]

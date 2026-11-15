@@ -1,0 +1,48 @@
+{
+  "status": "success",
+  "data": {
+    "resultType": "vector",
+    "result": [
+      {
+        "metric": {
+          "connection_security_policy": "mutual_tls",
+          "destination_workload": "catalog-v2"
+        },
+        "value": [
+          1794685922.450,
+          "36899"
+        ]
+      },
+      {
+        "metric": {
+          "connection_security_policy": "mutual_tls",
+          "destination_workload": "catalog-v1"
+        },
+        "value": [
+          1794685922.450,
+          "36683"
+        ]
+      },
+      {
+        "metric": {
+          "connection_security_policy": "mutual_tls",
+          "destination_workload": "inventory"
+        },
+        "value": [
+          1794685922.450,
+          "86588"
+        ]
+      },
+      {
+        "metric": {
+          "connection_security_policy": "mutual_tls",
+          "destination_workload": "frontend"
+        },
+        "value": [
+          1794685922.450,
+          "73129"
+        ]
+      }
+    ]
+  }
+}

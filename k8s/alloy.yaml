@@ -1,0 +1,78 @@
+# Coletor de logs: Grafana Alloy lê os logs dos pods do namespace "mesh" pela API do Kubernetes e envia ao Loki.
+apiVersion: v1
+kind: ServiceAccount
+metadata: {name: alloy, namespace: istio-system}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata: {name: alloy}
+rules:
+- apiGroups: [""]
+  resources: [pods, pods/log, namespaces, nodes, events]
+  verbs: [get, list, watch]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata: {name: alloy}
+roleRef: {apiGroup: rbac.authorization.k8s.io, kind: ClusterRole, name: alloy}
+subjects: [{kind: ServiceAccount, name: alloy, namespace: istio-system}]
+---
+apiVersion: v1
+kind: ConfigMap
+metadata: {name: alloy, namespace: istio-system}
+data:
+  config.alloy: |
+    discovery.kubernetes "pods" {
+      role = "pod"
+    }
+    discovery.relabel "mesh" {
+      targets = discovery.kubernetes.pods.targets
+      rule {
+        source_labels = ["__meta_kubernetes_namespace"]
+        regex = "mesh"
+        action = "keep"
+      }
+      rule {
+        source_labels = ["__meta_kubernetes_namespace"]
+        target_label = "namespace"
+      }
+      rule {
+        source_labels = ["__meta_kubernetes_pod_name"]
+        target_label = "pod"
+      }
+      rule {
+        source_labels = ["__meta_kubernetes_pod_container_name"]
+        target_label = "container"
+      }
+      rule {
+        source_labels = ["__meta_kubernetes_pod_label_app"]
+        target_label = "app"
+      }
+    }
+    loki.source.kubernetes "mesh" {
+      targets    = discovery.relabel.mesh.output
+      forward_to = [loki.write.default.receiver]
+    }
+    loki.write "default" {
+      endpoint {
+        url = "http://loki.istio-system.svc:3100/loki/api/v1/push"
+      }
+    }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: alloy, namespace: istio-system}
+spec:
+  replicas: 1
+  selector: {matchLabels: {app: alloy}}
+  template:
+    metadata: {labels: {app: alloy}}
+    spec:
+      serviceAccountName: alloy
+      containers:
+      - name: alloy
+        image: grafana/alloy:v1.10.0
+        args: ["run", "/etc/alloy/config.alloy", "--storage.path=/tmp/alloy"]
+        resources: {requests: {cpu: 20m, memory: 96Mi}}
+        volumeMounts: [{name: cfg, mountPath: /etc/alloy}]
+      volumes: [{name: cfg, configMap: {name: alloy}}]

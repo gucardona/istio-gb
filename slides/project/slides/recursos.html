@@ -1,0 +1,18 @@
+<section id="recursos" class="warm">
+<div class="head">
+<p class="eyebrow">GRÁFICOS: CPU E MEMÓRIA, MESMA CARGA EM CADA CASO</p>
+<h2>O Istio gastou bem mais CPU e memória</h2>
+</div>
+<div style="display:flex; gap:32px">
+<div style="display:flex; flex-direction:column; gap:16px; width:816px">
+<img class="shot" style="width:816px; height:460px" src="/_blob/231007c9b35f74b32703e2b15820bfb4" alt="Gráfico do Prometheus com uso de CPU por namespace: plain, applib e mesh recebem a mesma carga em sequência, e o mesh consome bem mais">
+<p class="small">CPU: A (vermelho) e B (verde) usam cerca de 0,2 núcleo; C (azul) usa cerca de 1,4.</p>
+</div>
+<div style="display:flex; flex-direction:column; gap:16px; width:816px">
+<img class="shot" style="width:816px; height:460px" src="/_blob/0d84473aa845e7ddf6a0b78b44f5e80e" alt="Gráfico do Prometheus com memória por namespace: plain e applib perto de 20 MiB, mesh perto de 270 MiB">
+<p class="small">Memória: A e B ficam entre 20 e 45 MiB; C fica entre 270 e 310 MiB.</p>
+</div>
+</div>
+<p class="takeaway">Cada proxy usa sua própria CPU e memória. Com a mesma carga, o caso C usou cerca de sete vezes mais CPU que A e B.</p>
+<aside>Para medir o consumo, aplicamos a mesma carga, 300 pedidos por segundo durante 2 minutos, primeiro no caso A, depois no B e depois no C. Os gráficos são do Prometheus. Os nomes plain, applib e mesh são os casos A, B e C. À esquerda, a CPU: os três blocos aparecem um depois do outro. A e B usam cerca de 0,2 núcleo; o Istio usa cerca de 1,4, umas sete vezes mais, porque os proxies também trabalham em cada pedido. À direita, a memória do namespace inteiro, contando os pods de teste: A e B ficam entre 20 e 45 MiB, e o C entre 270 e 310 MiB, porque cada proxy ocupa de 35 a 45 MiB.</aside>
+</section>

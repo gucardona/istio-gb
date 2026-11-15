@@ -1,0 +1,89 @@
+{
+ "v": 5,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-11-15T14:45:00Z"
+ },
+ "lists": "css",
+ "format": {
+  "v": 1,
+  "shared": [
+   "project/deck.css"
+  ]
+ },
+ "title": "Istio na prática – GB",
+ "cover": "cover",
+ "order": [
+  "cover",
+  "enunciado",
+  "problema",
+  "feito",
+  "estrategia",
+  "arquitetura",
+  "deployado",
+  "istio-config",
+  "deploy",
+  "metodologia",
+  "metricas",
+  "parametros",
+  "seguranca",
+  "vel-baixa",
+  "vel-carga",
+  "recursos",
+  "resiliencia",
+  "cb",
+  "observ",
+  "esforco",
+  "resumo",
+  "discussao",
+  "literatura",
+  "limitacoes",
+  "conclusao",
+  "apendice",
+  "yaml-seg",
+  "yaml-trafego",
+  "injecao",
+  "ev-kiali",
+  "ev-metricas",
+  "ev-trace",
+  "latencia",
+  "canario"
+ ],
+ "sections": {
+  "s1": {
+   "description": "Estratégia",
+   "start": "cover"
+  },
+  "s2": {
+   "description": "Arquitetura",
+   "start": "arquitetura"
+  },
+  "s3": {
+   "description": "Metodologia de testes: protótipo, infraestrutura, cenários, métricas e parâmetros",
+   "start": "deployado"
+  },
+  "s4": {
+   "description": "Gráficos e resultados",
+   "start": "seguranca"
+  },
+  "s5": {
+   "description": "Tabela, discussão, limitações e conclusão",
+   "start": "resumo"
+  },
+  "s6": {
+   "description": "Apêndice técnico para perguntas",
+   "start": "apendice"
+  }
+ },
+ "faces": {
+  "ibm-plex-sans": {
+   "family": "IBM Plex Sans",
+   "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap"
+  },
+  "jetbrains-mono": {
+   "family": "JetBrains Mono",
+   "href": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap"
+  }
+ },
+ "designSystems": []
+}

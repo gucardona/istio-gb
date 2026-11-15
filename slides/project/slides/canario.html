@@ -1,0 +1,18 @@
+<section id="canario">
+<div class="ev">
+<div class="col">
+<p class="eyebrow">RESULTADO · CANÁRIO</p>
+<h2>A divisão segue o peso configurado</h2>
+<table style="font-size:28px; width:520px">
+<tr class="hd"><th style="width:40%">Pesos v1/v2</th><th style="width:30%">v1</th><th style="width:30%">v2</th></tr>
+<tr><td>100/0</td><td>200</td><td>0</td></tr>
+<tr><td>90/10</td><td>190</td><td>10</td></tr>
+<tr><td>50/50</td><td>104</td><td>96</td></tr>
+<tr><td>0/100</td><td>0</td><td>200</td></tr>
+</table>
+<p class="small">200 requisições por configuração, trocando só o VirtualService com kubectl apply.</p>
+</div>
+<img class="shot" src="/_blob/872bf4b4756e03364f0d3b309f403bd0" alt="Grafo do Kiali com a divisão de tráfego do catalog: 50,3% para v2 e 49,7% para v1">
+</div>
+<aside>Sem o Istio, mudar a proporção entre versões exige mexer no número de réplicas. Com um VirtualService os pesos ficam independentes das réplicas e mudam com um kubectl apply. O Kiali mostra a divisão real.</aside>
+</section>

@@ -1,0 +1,4 @@
+NAME                           CPU(cores)   CPU(%)   MEMORY(bytes)   MEMORY(%)   
+aks-app-10489168-vmss000000    220m         11%      2047Mi          28%         
+aks-load-71799644-vmss000000   148m         7%       1322Mi          18%         
+aks-sys-16946010-vmss000000    183m         9%       1873Mi          26%         

@@ -1,0 +1,8 @@
+plain    cliente sem credencial -> frontend                         200
+plain    cliente sem credencial -> catalog (sem autorização)      200
+applib   cliente sem certificado -> frontend (handshake recusado)   000
+applib   cliente com certificado -> frontend                        200
+applib   cliente CN=client -> catalog (so CN=frontend pode)         403
+mesh     cliente fora da malha -> frontend (mTLS STRICT)            000
+mesh     cliente na malha -> frontend                               200
+mesh     cliente na malha (SA client) -> catalog (so frontend pode) 403

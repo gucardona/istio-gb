@@ -1,0 +1,9 @@
+# Zero Trust: só a identidade (ServiceAccount) do frontend pode chamar catalog.
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata: {name: catalog-only-frontend}
+spec:
+  selector: {matchLabels: {app: catalog}}
+  action: ALLOW
+  rules:
+  - from: [{source: {principals: ["cluster.local/ns/mesh/sa/frontend"]}}]

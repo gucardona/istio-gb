@@ -1,0 +1,18 @@
+<section id="arquitetura">
+<div class="head">
+<p class="eyebrow">ARQUITETURA</p>
+<h2>Uma loja simples com três serviços</h2>
+</div>
+<div class="chain">
+<div class="node"><p class="nm">Cliente</p><p class="sub">gerador de carga</p></div>
+<x-connector style="width:72px"></x-connector>
+<div class="node"><p class="nm">frontend</p><p class="env">proxy</p></div>
+<x-connector style="width:72px"></x-connector>
+<div class="node"><p class="nm">catalog</p><p class="env">proxy</p><p class="sub">versões 1 e 2</p></div>
+<x-connector style="width:72px"></x-connector>
+<div class="node"><p class="nm">inventory</p><p class="env">proxy</p></div>
+</div>
+<p class="body" style="width:1600px">Cada pedido passa pelos três serviços. Na versão com Istio, cada serviço ganha um <b>proxy</b> ao lado (o Envoy), e todo o tráfego passa por ele. O <b>istiod</b> é a central do Istio: distribui certificados e regras para os proxies, mas não fica no caminho dos pedidos.</p>
+<div class="band obs"><p class="k">MONITORAMENTO</p><p>Prometheus guarda as métricas, Grafana e Kiali mostram gráficos e o mapa dos serviços, Jaeger mostra o caminho de cada pedido.</p></div>
+<aside>Esta é a aplicação que usamos. Um cliente, que nos testes é o gerador de carga fortio, chama o frontend. O frontend chama o catalog, que existe em duas versões, e o catalog chama o inventory. Então cada pedido atravessa três serviços. Na versão com Istio, cada serviço ganha um proxy ao lado, o Envoy, e todo pedido entra e sai por ele. O istiod é a parte central do Istio: ele entrega os certificados e as regras para os proxies, mas os pedidos não passam por ele. Para observar tudo, usamos Prometheus, Grafana, Kiali, Jaeger e Loki para os logs.</aside>
+</section>

@@ -1,0 +1,15 @@
+<section id="metodologia">
+<div class="head">
+<p class="eyebrow">METODOLOGIA DE TESTES: CENÁRIOS</p>
+<h2>Seis cenários, aplicados aos três casos</h2>
+</div>
+<div class="steps">
+<div class="step in" style="--i:0"><p class="t">É seguro?</p><p class="d">Tentamos acessar os serviços sem certificado e com a identidade errada.</p></div>
+<div class="step in" style="--i:1"><p class="t">É rápido?</p><p class="d">Medimos o tempo de resposta com 1 usuário e com 32 usuários ao mesmo tempo.</p></div>
+<div class="step in" style="--i:2"><p class="t">Quanto consome?</p><p class="d">CPU e memória com a mesma carga nos três casos.</p></div>
+<div class="step in" style="--i:3"><p class="t">Aguenta falhas?</p><p class="d">Deixamos um serviço lento de propósito em metade dos pedidos.</p></div>
+<div class="step in" style="--i:4"><p class="t">Quanto trabalho dá?</p><p class="d">Contamos as linhas de código ou de configuração.</p></div>
+<div class="step in" style="--i:5"><p class="t">Dá para acompanhar?</p><p class="d">Vimos que painéis, logs e traces cada caso oferece.</p></div>
+</div>
+<aside>Para comparar, fizemos as mesmas perguntas aos três casos. Segurança: tentamos chamar os serviços sem certificado e com a identidade errada. Velocidade: medimos o tempo de resposta com 1 usuário a 50 pedidos por segundo e com 32 usuários a 500 pedidos por segundo, em três rodadas de 30 segundos, alternando os casos. Consumo: CPU e memória pelo Prometheus, com a mesma carga. Falhas: o inventory passou a demorar 2 segundos em metade dos pedidos. Esforço: linhas de código ou de YAML. E observabilidade: o que cada caso deixa ver. Os números que mostramos são a mediana das rodadas.</aside>
+</section>

@@ -1,0 +1,20 @@
+<section id="istio-config" class="warm">
+<div class="head">
+<p class="eyebrow">METODOLOGIA DE TESTES: PROTÓTIPO, CONFIGURAÇÃO DO ISTIO</p>
+<h2>Arquivos de configuração no lugar de código</h2>
+</div>
+<div style="display:flex; gap:64px; align-items:flex-start">
+<ul class="pts sm" style="width:960px">
+<li><b>Ligar o Istio:</b> um rótulo no namespace faz o Istio colocar o proxy em cada pod.</li>
+<li><b>Criptografia obrigatória:</b> uma regra exige que toda conexão use certificado (mTLS).</li>
+<li><b>Controle de acesso:</b> uma regra diz que só o frontend pode chamar o catalog.</li>
+<li><b>Tempo limite e nova tentativa:</b> nenhuma chamada espera mais de 1 segundo.</li>
+<li><b>Divisão de versões:</b> 90% dos pedidos vão para a versão 1 e 10% para a versão 2.</li>
+</ul>
+<div class="snip" style="width:640px">
+<p class="yaml">kind: <span class="kw">AuthorizationPolicy</span><br>spec:<br>&#160;&#160;selector: {app: catalog}<br>&#160;&#160;action: <span class="kw">ALLOW</span><br>&#160;&#160;rules:<br>&#160;&#160;- from: principals:<br>&#160;&#160;&#160;&#160;[".../sa/<span class="kw">frontend</span>"]</p>
+<p class="why2">Exemplo: a regra de acesso do catalog, em sete linhas.</p>
+</div>
+</div>
+<aside>Este é o coração da parte do Istio. Tudo o que no caso B virou código Go, no caso C virou arquivo de configuração em YAML. Um rótulo no namespace liga o Istio. Uma regra chamada PeerAuthentication exige criptografia em toda conexão. Uma AuthorizationPolicy, que é o exemplo à direita, diz que o catalog só aceita chamadas que venham do frontend, usando a identidade que o próprio Istio dá a cada serviço. Um VirtualService define o tempo limite de 1 segundo, a nova tentativa e a divisão entre as versões. E uma DestinationRule limita conexões. Somando tudo, foram 31 linhas. Os trechos completos estão no apêndice.</aside>
+</section>

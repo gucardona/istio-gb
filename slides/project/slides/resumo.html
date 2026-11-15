@@ -1,0 +1,17 @@
+<section id="resumo">
+<div class="head">
+<p class="eyebrow">TABELA COMPARATIVA</p>
+<h2>Os três casos lado a lado</h2>
+</div>
+<table>
+<tr class="hd"><th style="width:28%"></th><th style="width:24%">A: sem proteção</th><th style="width:24%">B: no código</th><th style="width:24%">C: Istio</th></tr>
+<tr><td>Segurança</td><td>nenhuma</td><td>sim</td><td>sim, com renovação automática</td></tr>
+<tr><td>Tempo com 32 usuários</td><td>7,7 ms</td><td>8,4 ms</td><td>45,8 ms</td></tr>
+<tr><td>CPU com a mesma carga</td><td>0,2 núcleo</td><td>0,2 núcleo</td><td>1,4 núcleo</td></tr>
+<tr><td>Memória</td><td>20 a 45 MiB</td><td>20 a 45 MiB</td><td>270 a 310 MiB</td></tr>
+<tr><td>Reage a falhas</td><td>não</td><td>sim</td><td>sim</td></tr>
+<tr><td>Painéis e traces</td><td>não</td><td>poucos</td><td>completos</td></tr>
+<tr><td>Trabalho</td><td>nenhum</td><td>227 linhas</td><td>31 linhas</td></tr>
+</table>
+<aside>Esta tabela junta tudo. O caso A é o mais rápido e o mais barato, mas não tem segurança nem proteção contra falhas. O caso B entrega segurança e resiliência quase sem perder desempenho, mas dá muito trabalho, só serve para uma linguagem e não renova certificados nem tem painéis completos. O caso C entrega tudo com pouca configuração, mas cobra em tempo de resposta sob carga e em memória. A memória aqui é a do namespace inteiro no Prometheus, contando os pods de teste; contando só os três serviços, são cerca de 30 MiB em A e B contra 190 MiB em C, que é o número que está no artigo.</aside>
+</section>

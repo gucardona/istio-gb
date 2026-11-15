@@ -1,0 +1,16 @@
+<section id="parametros" class="warm">
+<div class="head">
+<p class="eyebrow">METODOLOGIA DE TESTES: PARÂMETROS</p>
+<h2>Como cada teste foi configurado</h2>
+</div>
+<table>
+<tr class="hd"><th style="width:28%">Cenário</th><th style="width:72%">Parâmetros</th></tr>
+<tr><td>Tempo de resposta</td><td>1 usuário a 50 pedidos/s e 32 usuários a 500 pedidos/s; 3 rodadas de 30 s, alternando os casos</td></tr>
+<tr><td>Consumo</td><td>300 pedidos/s com 16 usuários por 2 minutos, um caso de cada vez</td></tr>
+<tr><td>Falhas</td><td>Estoque com atraso de 2 s em 50% dos pedidos; limite de 1 s e 1 nova tentativa</td></tr>
+<tr><td>Vazão</td><td>20 conexões sem limite de pedidos/s; no caso C, com rastreamento em 100% e em 1%; circuit breaker com 1 conexão</td></tr>
+<tr><td>Ambiente</td><td>3 nós de 2 vCPU no AKS, Istio 1.26, Kubernetes 1.36, fortio 1.69.5, Go 1.22</td></tr>
+</table>
+<p class="small">Os resultados apresentados são a mediana das rodadas.</p>
+<aside>Aqui estão os parâmetros de cada teste. No tempo de resposta usamos dois níveis de carga: 1 usuário a 50 pedidos por segundo e 32 usuários a 500 pedidos por segundo, cada um em três rodadas de 30 segundos, alternando os casos para nenhum ser favorecido. No consumo, 300 pedidos por segundo com 16 usuários durante 2 minutos, um caso por vez. No teste de falhas, o inventory atrasa 2 segundos em metade dos pedidos, e a regra em B e C é limite de 1 segundo com uma nova tentativa. Na vazão máxima, 20 usuários pedindo sem limite, com o circuit breaker permitindo uma conexão. O ambiente foi o mesmo para tudo.</aside>
+</section>

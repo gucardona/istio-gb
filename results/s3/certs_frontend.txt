@@ -1,0 +1,3 @@
+RESOURCE NAME     TYPE           STATUS     VALID CERT     SERIAL NUMBER                        NOT AFTER                NOT BEFORE
+default           Cert Chain     ACTIVE     true           e2b6cd3e4ba28736986d05e476320288     2026-11-15T19:28:45Z     2026-11-14T19:26:45Z
+ROOTCA            CA             ACTIVE     true           1c3d406fdaadd9c3d9938f98490e5297     2036-11-11T18:50:39Z     2026-11-14T18:50:39Z

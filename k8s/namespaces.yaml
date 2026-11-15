@@ -1,0 +1,17 @@
+# mesh = Bookinfo COM Istio | plain = Bookinfo SEM Istio (referência) | legacy = cliente fora da malha
+apiVersion: v1
+kind: Namespace
+metadata: {name: mesh, labels: {istio-injection: enabled}}
+---
+apiVersion: v1
+kind: Namespace
+metadata: {name: plain}
+---
+apiVersion: v1
+kind: Namespace
+metadata: {name: legacy}
+---
+# applib = modo B: mesmas funções implementadas na aplicação (sem Istio)
+apiVersion: v1
+kind: Namespace
+metadata: {name: applib}

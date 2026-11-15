@@ -1,0 +1,14 @@
+<section id="observ">
+<div class="head">
+<p class="eyebrow">GRÁFICOS E RESULTADOS: OBSERVABILIDADE</p>
+<h2>Só o Istio trouxe painéis prontos, sem escrever código</h2>
+</div>
+<div style="display:flex; gap:24px">
+<div style="display:flex; flex-direction:column; gap:12px; width:539px"><img class="shot" style="width:539px; height:337px" src="/_blob/1f309b640d4a1311a233129a5fb02454" alt="Kiali: mapa dos serviços com cadeado de mTLS em cada ligação"><p class="small">Kiali: mapa dos serviços, com um cadeado em cada ligação cifrada.</p></div>
+<div style="display:flex; flex-direction:column; gap:12px; width:539px"><img class="shot" style="width:539px; height:337px" src="/_blob/e328b40a797252871cb4c5b9cfad3af8" alt="Grafana: painel da malha com pedidos por segundo, sucesso e tempos por serviço"><p class="small">Grafana: pedidos por segundo, erros e tempos de cada serviço.</p></div>
+<div style="display:flex; flex-direction:column; gap:12px; width:539px"><img class="shot" style="width:539px; height:337px" src="/_blob/8de788ae30878dce27031419d74bacfd" alt="Jaeger: um pedido atravessando frontend, catalog e inventory"><p class="small">Jaeger: o caminho de um pedido pelos três serviços.</p></div>
+</div>
+<div class="spacer"></div>
+<p class="takeaway">No caso A não há nada disso. No caso B programamos apenas um contador e um medidor de tempo por serviço.</p>
+<aside>Este ganho não aparece nos números de desempenho. No caso C, sem escrever código, ganhamos três visões. No Kiali, o mapa dos serviços montado sozinho, com um cadeado em cada ligação mostrando que o tráfego está cifrado. No Grafana, painéis prontos com pedidos por segundo, taxa de sucesso e tempo de cada serviço. No Jaeger, o caminho de um pedido pelo frontend, catalog e inventory, com o tempo de cada etapa. Também ficaram os logs de acesso no Loki. No caso A não existe nada disso, e no B programamos só um contador e um histograma de tempo.</aside>
+</section>

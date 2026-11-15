@@ -1,0 +1,16 @@
+<section id="deploy">
+<div class="head">
+<p class="eyebrow">METODOLOGIA DE TESTES: INFRAESTRUTURA</p>
+<h2>Kubernetes na Azure, montado por scripts</h2>
+</div>
+<div class="steps">
+<div class="step in" style="--i:0"><p class="n">1</p><p class="t">Criar o cluster</p><p class="d">Três máquinas na Azure e um registro para guardar a imagem da aplicação.</p></div>
+<div class="step in" style="--i:1"><p class="n">2</p><p class="t">Instalar o Istio</p><p class="d">Com a configuração padrão, mais as ferramentas de monitoramento.</p></div>
+<div class="step in" style="--i:2"><p class="n">3</p><p class="t">Gerar a imagem</p><p class="d">Compilamos o Go e enviamos uma imagem mínima para o registro.</p></div>
+<div class="step in" style="--i:3"><p class="n">4</p><p class="t">Publicar os três casos</p><p class="d">Um comando aplica os arquivos de configuração de cada caso.</p></div>
+<div class="step in" style="--i:4"><p class="n">5</p><p class="t">Rodar os testes</p><p class="d">Scripts disparam as cargas e guardam os resultados.</p></div>
+<div class="step in" style="--i:5"><p class="n">6</p><p class="t">Desligar tudo</p><p class="d">Um último script apaga o cluster para não gastar crédito.</p></div>
+</div>
+<div class="band obs"><p class="k">AMBIENTE</p><p>AKS com 3 máquinas de 2 vCPU (sistema, aplicação e carga), Kubernetes 1.36 e Istio 1.26</p></div>
+<aside>Para qualquer pessoa conseguir repetir o experimento, deixamos tudo em scripts. O aks-up.sh cria o cluster com três nós (um para o sistema, um para a aplicação e um só para o gerador de carga) e o registro de imagens. O istio-install.sh instala o Istio 1.26 com o perfil padrão e as ferramentas de monitoramento. O build-image.sh compila o programa e envia uma imagem mínima para o registro. Com kubectl apply publicamos os três casos. Os scripts da pasta bench rodam os testes e salvam os resultados. E o aks-down.sh apaga tudo no final.</aside>
+</section>

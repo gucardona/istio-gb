@@ -1,0 +1,5 @@
+PERMISSIVE  cliente fora da malha -> frontend: 200
+STRICT      cliente fora da malha -> frontend: 000
+STRICT      cliente na malha      -> frontend: 200
+AUTHZ       cliente na malha (SA client) -> catalog:  403
+AUTHZ       frontend via malha -> catalog (200 esperado): 200

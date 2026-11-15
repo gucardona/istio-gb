@@ -1,0 +1,6 @@
+# Liga o access log do Envoy (stdout, JSON) nos sidecars do namespace mesh.
+apiVersion: telemetry.istio.io/v1
+kind: Telemetry
+metadata: {name: access-log, namespace: mesh}
+spec:
+  accessLogging: [{providers: [{name: envoy}]}]
