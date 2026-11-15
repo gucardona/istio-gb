@@ -24,14 +24,14 @@ A mesma cadeia de microsserviços em Go (frontend, catalog v1/v2, inventory) rod
 
 ## Reproduzir (WSL)
 
+Precisa de `az`, `kubectl`, `go`, `crane` e `jq` no WSL, e de `az login` feito.
+
 ```bash
-./infra/aks-up.sh            # grupo, ACR (nome salvo em .acr-name) e AKS com 3 nós
-./infra/istio-install.sh     # Istio 1.26 + Prometheus, Grafana, Jaeger, Kiali
-./infra/build-image.sh       # compila o Go e envia a imagem ao ACR
-kubectl apply -f k8s/namespaces.yaml -f k8s/clients.yaml
-IMG="$(cat .acr-name).azurecr.io/svc:v1"
-for ns in plain mesh; do sed "s|__IMG__|$IMG|" k8s/app.yaml.tpl | kubectl -n $ns apply -f -; done
-./bench/prep-applib.sh       # caso B: certificados e namespace applib
-./bench/run-compare.sh       # comparativo A/B/C -> results/cmp
-./infra/aks-down.sh          # apaga tudo
+./infra/up-all.sh               # AKS, Istio, painéis, imagem, os 3 casos e a telemetria
+./bench/run-compare.sh          # comparativo A/B/C -> results/cmp
+./bench/vazao-telemetria.sh     # vazão do caso C com telemetria das evidências e no padrão
+./infra/forwards.sh             # painéis em localhost (Kiali, Grafana, Jaeger, Prometheus, Loki)
+./infra/aks-down.sh             # apaga tudo
 ```
+
+Os resultados de uma nova execução vão variar um pouco: o que importa é a comparação entre os casos no mesmo ambiente.
